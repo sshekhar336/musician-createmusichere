@@ -26,7 +26,16 @@ import g5sound from '../../sounds/g5.mp3';
 import musicImage from "../../musicimage.jpg";
 
 export class MusicComponent extends Component {
+
+    constructor(props) {
+        super(props)
     
+        this.state = {
+            backgroundmusicbutton: false,
+        }
+    }
+    
+
     playSound(indexval) {
         let sound = document.querySelectorAll(".sound");
 
@@ -72,41 +81,39 @@ export class MusicComponent extends Component {
     startGame = () => {
         let backgroundMusic = document.querySelector(".backgroundMusic");
         backgroundMusic.pause();
-        //backgroundMusic.load();
+        backgroundMusic.load();
 
-        //backgroundMusic.currentTime = 0;
+        backgroundMusic.currentTime = 0;
 
         document.querySelector(".startGameButton").style.display = "none";
+        document.querySelector(".bkmusicbutton").style.display = "none";
 
         document.querySelectorAll(".musicComp")[0].style.display = "flex";
         document.querySelectorAll(".musicComp")[1].style.display = "flex";
     }
 
     playBackgroundMusic() {
-        // document.querySelector(".backgroundMusic").load();
-        // document.querySelector(".backgroundMusic").play();
+        var promise = document.querySelector('.backgroundMusic').play();
 
-        var audio = document.querySelector(".backgroundMusic");
-
-        var isPlaying = audio.currentTime > 0 && !audio.paused && !audio.ended
-            && audio.readyState > 2;
-
-        if (!isPlaying) {
-            audio.play();
+        if (promise !== undefined) {
+            promise.then(_ => {
+                document.querySelector(".backgroundMusic").play();
+            }).catch(error => {
+                this.setState({
+                    backgroundmusicbutton: true,
+                },document.querySelector(".bkmusicbutton").style.display = "block")
+                
+            });
         }
     }
 
     componentDidMount() {
-        this.playBackgroundMusic();
-        
+        window.addEventListener('load', this.playBackgroundMusic);
+
+        document.querySelector(".bkmusicbutton").style.display = "none";
         document.querySelectorAll(".musicComp")[0].style.display = "none";
         document.querySelectorAll(".musicComp")[1].style.display = "none";
     }
-
-    componentDidUpdate() {
-        this.playBackgroundMusic();
-    }
-
 
     render() {
         const style = {
@@ -118,9 +125,11 @@ export class MusicComponent extends Component {
                 <div className="titlename">
                     <h1>Musician...</h1>
                 </div>
-
                 <div className="startGameButton">
-                    <button id="id" onClick={this.startGame}>START</button>
+                    <button id="start" onClick={this.startGame}>START</button>
+                </div>
+                <div className="bkmusicbutton">
+                    <button id="playbackgroundmusic" onClick={this.playBackgroundMusic}>Play background music</button>
                 </div>
                 <div className="visualEffects">
                 </div>

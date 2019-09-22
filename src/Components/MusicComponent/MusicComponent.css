@@ -115,7 +115,7 @@ h1{
     z-index: 1;
 }
 
-#id{
+#start{
     border: none;
     font-size: 30px;
     font-weight: bolder;
@@ -124,6 +124,19 @@ h1{
     color: #c7d3a6bb;
     padding: 20px 58px;
     margin-top: 12%;
+    border-radius: 37px;
+    
+}
+
+#playbackgroundmusic{
+    border: none;
+    font-size: 12px;
+    /* font-weight: bolder; */
+    padding: 3px 23px;
+    background-color: #438cecc4;
+    color: #c7d3a6bb;
+    padding: 6px 34px;
+    margin-top: 9%;
     border-radius: 37px;
     
 }
@@ -144,9 +157,9 @@ h1{
 
 .visualEffects > div {
     position: absolute;
-    height: 50px;
-    border-radius: 50px;
-    width: 50px;
+    height: 30px;
+    border-radius: 80px;
+    width: 30px;
     bottom: 0%;
     left: 20%;   
 }
@@ -154,7 +167,7 @@ h1{
 @keyframes jump{
     0%{
         bottom: 0%;
-        left: 5%;
+        left: 15%;
     }
     50%{
         bottom: 70%;
@@ -162,7 +175,7 @@ h1{
     }
     100%{
         bottom: 0%;
-        left: 75%;
+        left: 85%;
     }
 }
 
