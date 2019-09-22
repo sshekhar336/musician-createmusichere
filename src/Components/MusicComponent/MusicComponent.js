@@ -26,7 +26,7 @@ import g5sound from '../../sounds/g5.mp3';
 import musicImage from "../../musicimage.jpg";
 
 export class MusicComponent extends Component {
-
+    
     playSound(indexval) {
         let sound = document.querySelectorAll(".sound");
 
@@ -72,7 +72,9 @@ export class MusicComponent extends Component {
     startGame = () => {
         let backgroundMusic = document.querySelector(".backgroundMusic");
         backgroundMusic.pause();
-        backgroundMusic.currentTime = 0;
+        //backgroundMusic.load();
+
+        //backgroundMusic.currentTime = 0;
 
         document.querySelector(".startGameButton").style.display = "none";
 
@@ -81,19 +83,34 @@ export class MusicComponent extends Component {
     }
 
     playBackgroundMusic() {
-        document.querySelector(".backgroundMusic").play();
+        // document.querySelector(".backgroundMusic").load();
+        // document.querySelector(".backgroundMusic").play();
+
+        var audio = document.querySelector(".backgroundMusic");
+
+        var isPlaying = audio.currentTime > 0 && !audio.paused && !audio.ended
+            && audio.readyState > 2;
+
+        if (!isPlaying) {
+            audio.play();
+        }
     }
 
     componentDidMount() {
         this.playBackgroundMusic();
+        
         document.querySelectorAll(".musicComp")[0].style.display = "none";
         document.querySelectorAll(".musicComp")[1].style.display = "none";
+    }
+
+    componentDidUpdate() {
+        this.playBackgroundMusic();
     }
 
 
     render() {
         const style = {
-            "backgroundImage": "url("+musicImage+")",
+            "backgroundImage": "url(" + musicImage + ")",
             "height": "100%"
         }
         return (
@@ -108,11 +125,11 @@ export class MusicComponent extends Component {
                 <div className="visualEffects">
                 </div>
 
-                <audio className="backgroundMusic" src={oneStepCloser}></audio>
+                <audio className="backgroundMusic" ref="audio" src={oneStepCloser}></audio>
 
                 <div className="musicComp bottom">
                     <div className="samediv divSound0" onClick={() => this.playSound(0)}>
-                        <audio className="sound" src={a3sound}></audio>
+                        <audio className="sound" ref="audio" src={a3sound}></audio>
                     </div>
                     <div className="samediv divSound1" onClick={() => this.playSound(1)}>
                         <audio className="sound" src={a4sound}></audio>

@@ -154,7 +154,7 @@ h1{
 @keyframes jump{
     0%{
         bottom: 0%;
-        left: 2%;
+        left: 5%;
     }
     50%{
         bottom: 70%;
@@ -162,7 +162,7 @@ h1{
     }
     100%{
         bottom: 0%;
-        left: 95%;
+        left: 75%;
     }
 }
 
