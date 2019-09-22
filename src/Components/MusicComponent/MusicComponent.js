@@ -124,7 +124,7 @@ export class MusicComponent extends Component {
                     <h1>Musician...</h1>
                 </div>
                 <div className="startGameButton">
-                    <button id="start" onClick={this.startGame}>START444</button>
+                    <button id="start" onClick={this.startGame}>START</button>
                 </div>
                 <div className="bkmusicbutton">
                     <button id="playbackgroundmusic" onClick={this.playBackgroundMusic}>Play background music</button>
