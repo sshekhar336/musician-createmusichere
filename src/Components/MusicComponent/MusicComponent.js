@@ -99,9 +99,7 @@ export class MusicComponent extends Component {
             promise.then(_ => {
                 document.querySelector(".backgroundMusic").play();
             }).catch(error => {
-                this.setState({
-                    backgroundmusicbutton: true,
-                },document.querySelector(".bkmusicbutton").style.display = "block")
+                document.querySelector(".bkmusicbutton").style.display = "block";
                 
             });
         }
@@ -126,7 +124,7 @@ export class MusicComponent extends Component {
                     <h1>Musician...</h1>
                 </div>
                 <div className="startGameButton">
-                    <button id="start" onClick={this.startGame}>START</button>
+                    <button id="start" onClick={this.startGame}>START444</button>
                 </div>
                 <div className="bkmusicbutton">
                     <button id="playbackgroundmusic" onClick={this.playBackgroundMusic}>Play background music</button>
